@@ -2,15 +2,10 @@ import Tasks from "./pages/Tasks";
 
 function App() {
   return (
-    <div
-      style={{
-        maxWidth: "500px",
-        margin: "40px auto",
-        fontFamily: "sans-serif",
-      }}
-    >
-      <h1>MERN + GraphQL Task App</h1>
-      <hr style={{ margin: "20px 0" }} />
+    <div className="app-container">
+      <h1 className="app-title">
+        <span>MERN + GraphQL</span> Tasks
+      </h1>
       <Tasks />
     </div>
   );
