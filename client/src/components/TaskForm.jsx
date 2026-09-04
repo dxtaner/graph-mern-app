@@ -17,15 +17,15 @@ export default function TaskForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
+    <form onSubmit={handleSubmit} className="task-form">
       <input
         type="text"
         placeholder="Add a new task..."
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        style={{ padding: "8px", marginRight: "8px", width: "70%" }}
+        className="task-input"
       />
-      <button type="submit" style={{ padding: "8px 16px", cursor: "pointer" }}>
+      <button type="submit" className="btn-add">
         Add
       </button>
     </form>
