@@ -21,26 +21,21 @@ export default function TaskItem({ task }) {
   };
 
   return (
-    <li
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "10px",
-        marginBottom: "8px",
-      }}
-    >
-      <input type="checkbox" checked={task.completed} onChange={handleToggle} />
-      <span
-        style={{
-          textDecoration: task.completed ? "line-through" : "none",
-          flexGrow: 1,
-        }}
-      >
-        {task.title}
-      </span>
+    <li className="task-item">
+      <div className="task-content" onClick={handleToggle}>
+        <input
+          type="checkbox"
+          checked={task.completed}
+          onChange={handleToggle}
+          className="task-checkbox"
+        />
+        <span className={`task-text ${task.completed ? "completed" : ""}`}>
+          {task.title}
+        </span>
+      </div>
       <button
         onClick={() => deleteTask({ variables: { id: task.id } })}
-        style={{ color: "red", cursor: "pointer", padding: "4px 8px" }}
+        className="btn-delete"
       >
         Delete
       </button>
