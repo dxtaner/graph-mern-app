@@ -1,32 +1,216 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
+
+:root {
+  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+  --panel-bg: rgba(30, 41, 59, 0.7);
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --input-bg: rgba(15, 23, 42, 0.6);
+  --primary-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  --primary-hover: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --danger-bg: rgba(239, 68, 68, 0.1);
+  --danger-color: #f87171;
+  --danger-hover: #ef4444;
+  --radius: 16px;
+  --shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+}
+
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f5f5f5;
-}
-
-.app {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text-main);
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
-.header {
-  padding: 20px;
-  background: #222;
+/* Ana Kart (Glassmorphism Effect) */
+.app-container {
+  width: 100%;
+  max-width: 520px;
+  background: var(--panel-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  padding: 36px 28px;
+  box-shadow: var(--shadow);
+}
+
+/* Başlık */
+.app-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 28px;
+  letter-spacing: -0.02em;
+}
+
+.app-title span {
+  background: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #e879f9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Form & Inputlar */
+.task-form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.task-input {
+  flex: 1;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--panel-border);
+  background: var(--input-bg);
+  color: var(--text-main);
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.task-input::placeholder {
+  color: var(--text-muted);
+}
+
+.task-input:focus {
+  border-color: #818cf8;
+  box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.15);
+  background: rgba(15, 23, 42, 0.8);
+}
+
+/* Butonlar */
+.btn-add {
+  padding: 14px 24px;
+  border-radius: 12px;
+  border: none;
+  background: var(--primary-gradient);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.btn-add:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+}
+
+.btn-add:active {
+  transform: translateY(0);
+}
+
+/* Task Listesi ve Öğeleri */
+.task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  transition: all 0.25s ease;
+}
+
+.task-item:hover {
+  background: rgba(15, 23, 42, 0.7);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: scale(1.01);
+}
+
+.task-content {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  cursor: pointer;
+}
+
+/* Checkbox */
+.task-checkbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #475569;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.task-checkbox:checked {
+  background: #6366f1;
+  border-color: #6366f1;
+}
+
+.task-checkbox:checked::after {
+  content: "✓";
+  position: absolute;
   color: white;
+  font-size: 13px;
+  font-weight: bold;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.container {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 20px;
+/* Task Metni */
+.task-text {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  transition: all 0.25s ease;
 }
 
-.task {
-  background: white;
-  padding: 20px;
-  margin-bottom: 15px;
+.task-text.completed {
+  text-decoration: line-through;
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+/* Silme Butonu */
+.btn-delete {
+  background: transparent;
+  border: none;
+  color: var(--danger-color);
+  padding: 8px 12px;
   border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-delete:hover {
+  background: var(--danger-bg);
+  color: var(--danger-hover);
+}
+
+.empty-msg {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 24px 0;
+  font-size: 0.95rem;
 }
