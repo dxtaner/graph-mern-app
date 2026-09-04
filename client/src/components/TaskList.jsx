@@ -2,11 +2,11 @@ import TaskItem from "./TaskItem";
 
 export default function TaskList({ tasks }) {
   if (!tasks || tasks.length === 0) {
-    return <p>No tasks found.</p>;
+    return <p className="empty-msg">No tasks found. Add your first task!</p>;
   }
 
   return (
-    <ul style={{ listStyle: "none", padding: 0 }}>
+    <ul className="task-list">
       {tasks.map((task) => (
         <TaskItem key={task.id} task={task} />
       ))}
